@@ -134,7 +134,7 @@ if(True):
     for users in myusers:
         if( users['email']==myemail):
                 myuser_id = users['userId']
-                print(users['email']," ", myuser_id)
+                #print(users['email']," ", myuser_id)
     user_url = f"{base_url}/register-accounts/v1.1/idps/api/orgs/{orgId}/invs/roles/standard/emails/{useremail}"
     user_data = {"email":useremail,"firstName":useremail,"groupIds":[user_group_id],
     "inviteId":"string","invitedBy":myuser_id,"lastName":"null","regType":"register","roleType":"STANDARD","type":"USER"}
