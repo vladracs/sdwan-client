@@ -6,10 +6,10 @@ Example of usage: (these tokens are needed to active the corresponding nodes:
 
 vfrancadesou% python3 api_sdwc.py
 
-ORG ID=63d2641f61bfe51362ca59ec
+ORG ID=63d2641f61bfe
 
-server 1 token= bmljbF9zZXJ2ZXJydmVy0MWY2MWJmZ2MTVubTcwNWc1Mms
+server 1 token = bm(...)MWJmZ2MTVub
 
-server 2 token= bmljbF9zZXJ2ZXdmVyMi0wNGZhN2kYS5uZXR8bWo4c282aWQ1bmF2YTVnbmxmMTI
+server 2 token = bml(...)WQ1bmF2YTV
 
-cc token= bmljbF9nd19uZXctY2ZGNjNllYy5hbmFuZGEubmV0fHJ0OG5hOXBuMG9odjc2YjBmOHFy
+cc token       = bml(...)odjc2YjBmO
