@@ -9,7 +9,7 @@
 import json
 import requests
 
-myapitoken = "YXBpXz2MmNhNTllYy1iZTg4Njk0My03OGQ0LTRhNGEtODNjZC1j
+myapitoken = "%s" %(os.environ['SDWC_API_TOKEN'])
 useremail = "vfrancadesou+user1@vmware.com"
 mydomain = "myacme.com"
 
