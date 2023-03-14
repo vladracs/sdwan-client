@@ -1,0 +1,11 @@
+# sdwan-client
+
+Scripts to build a VMware SD-WAN Client LAB/Demo
+
+Example of usage: (these tokens are needed to active the corresponding nodes:
+
+vfrancadesou% python3 api_sdwc.py
+ORG ID=63d2641f61bfe51362ca59ec
+server 1 token= bmljbF9zZXJ2ZXJydmVyMS03ZTUwZmI2Yi1kNWUzLTRjYTgtYWZjOC1lNjYzZWExNDMxMDNANjNkMjY0MWY2MWJmZTUxMzYyY2E1OWVjLmFuYW5kYS5uZXR8c2tlaGQ1cjJ2MTVubTcwNWc1Mms
+server 2 token= bmljbF9zZXJ2ZXdmVyMi0wNGZhN2FlNC1hZjA0LTRjZWItOTZmOC04YWJlYTYwMTQ3ZjdANjNkMjY0MWY2MWJmZTUxMzYyY2E1OWVjLmFuYW5kYS5uZXR8bWo4c282aWQ1bmF2YTVnbmxmMTI
+cc token= bmljbF9nd19uZXctY2ZGNjNmItZGQyZS00ODgzLWI5ODgtMTU3YzczOGM4MzRjQDYzZDI2NDFmNjFiZmU1MTM2MmNhNTllYy5hbmFuZGEubmV0fHJ0OG5hOXBuMG9odjc2YjBmOHFy
