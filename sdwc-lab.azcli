@@ -50,10 +50,10 @@ az network public-ip create -g $rg -n "user_pip" --sku standard --allocation-met
 
 echo "Creating NSG"
 az network nsg create -n $nsg_name -g $rg -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n SSH --priority 1010 --destination-port_ranges 22 --access Allow --protocol Tcp -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n RDP --priority 1020 --destination-port_ranges 3389 --access Allow --protocol Tcp -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-T --priority 1011 --destination-port_ranges 443 --access Allow --protocol Tcp -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-U --priority 1012 --destination-port_ranges 443 --access Allow --protocol Udp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n SSH --priority 1010 --destination-port-ranges 22 --access Allow --protocol Tcp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n RDP --priority 1020 --destination-port-ranges 3389 --access Allow --protocol Tcp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-T --priority 1011 --destination-port-ranges 443 --access Allow --protocol Tcp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-U --priority 1012 --destination-port-ranges 443 --access Allow --protocol Udp -o none
 
 echo "Creating NICs"
 az network nic create -n "cc_nic" -g $rg --vnet-name $hub_vnet_name --subnet $hub_subnet_cc_name --public-ip-address "cc_pip" \
@@ -179,15 +179,15 @@ az network public-ip create -g $rg -n "user2_pip" --sku standard --allocation-me
 
 echo "Creating NSG"
 az network nsg create -n $nsg_name -g $rg -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n SSH --priority 1010 --destination-port_ranges 22 --access Allow --protocol Tcp -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n RDP --priority 1020 --destination-port_ranges 3389 --access Allow --protocol Tcp -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-T --priority 1011 --destination-port_ranges 443 --access Allow --protocol Tcp -o none
-az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-U --priority 1012 --destination-port_ranges 443 --access Allow --protocol Udp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n SSH --priority 1010 --destination-port-ranges 22 --access Allow --protocol Tcp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n RDP --priority 1020 --destination-port-ranges 3389 --access Allow --protocol Tcp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-T --priority 1011 --destination-port-ranges 443 --access Allow --protocol Tcp -o none
+az network nsg rule create --nsg-name $nsg_name -g $rg -n HTTPS-U --priority 1012 --destination-port-ranges 443 --access Allow --protocol Udp -o none
 
 echo "Creating NICs"
 az network nic create -n "npe2_nic" -g $rg --vnet-name $npe2_vnet_name --subnet $npe2_subnet_name --public-ip-address "npe2_pip" \
    --ip-forwarding false --network-security-group $nsg_name -o none
-az network nic create -n "user2_nic" -g $rg --vnet-name $user_vnet_name --subnet $user2_subnet_name --public-ip-address "user2_pip" \
+az network nic create -n "user2_nic" -g $rg --vnet-name $user2_vnet_name --subnet $user2_subnet_name --public-ip-address "user2_pip" \
    --ip-forwarding false --network-security-group $nsg_name -o none
 
 cat <<EOF > desk-cloud-init.txt
@@ -236,6 +236,6 @@ az vm create \
   --admin-username azlinuxadmin \
   --admin-password azlinuxVMware1! \
   --vnet-name user2 \
-  --subnet sn-user2 \
+  --subnet sn_user2 \
   --custom-data desk-cloud-init.txt \
   --no-wait
