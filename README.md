@@ -21,7 +21,8 @@ WESTUS
 
 
 WESTEU
-![sdwc westeu](https://user-images.githubusercontent.com/76786046/225564392-5bc22166-703d-4ebb-bcdb-b17881fda76d.png)
+![westeu](https://user-images.githubusercontent.com/76786046/225592294-579bcf5b-974c-417f-9051-383ac97332d0.png)
+
 
 All linux instance have sdwc installed and a nginx webserver.
   sdwc must be activated via token collected during node creation in the portal/API 
