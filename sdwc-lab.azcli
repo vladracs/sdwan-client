@@ -47,6 +47,7 @@ az network public-ip create -g $rg -n "cc_pip" --sku standard --allocation-metho
 az network public-ip create -g $rg -n "srv_pip" --sku standard --allocation-method static -o none
 az network public-ip create -g $rg -n "npe_pip" --sku standard --allocation-method static -o none
 az network public-ip create -g $rg -n "user_pip" --sku standard --allocation-method static -o none
+az network public-ip create -g $rg -n "win_pip" --sku standard --allocation-method static -o none
 
 echo "Creating NSG"
 az network nsg create -n $nsg_name -g $rg -o none
@@ -125,16 +126,19 @@ az vm create \
   --custom-data cloud-init.txt \
   --no-wait
 
+
 echo "Creating SDWC User Windows VM"
 az vm create \
     --resource-group $rg\
+    --location $location
     --name sdwc_win \
-    --image Win2022AzureEditionCore \
-    --public-ip-sku Standard \
+    --image MicrosoftWindowsDesktop:Windows-10:21h1-ent:latest \
     --vnet-name user \
-    --subnet sn_user \
+    --subnet sn-user \
     --admin-username azwinadmin \
-# note that you will be prompted to enter a pwd
+    --admin-password "azwinVMware1!" \
+    --public-ip-address win_pip\
+    --accept-term
 
 # grabing the ip of the CC
 privIP=$(az vm nic show -g $rg --vm-name sdwc_cc3 --nic cc_nic --query "ipConfigurations[0].privateIpAddress" -o tsv)
