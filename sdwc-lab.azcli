@@ -9,10 +9,10 @@ location=westeurope
 hub_vnet_name=hub
 hub_vnet_prefix=10.2.0.0/24
 #CC SUBNET
-hub_subnet_cc_name=sn-cc
+hub_subnet_cc_name=sn_cc
 hub_subnet_cc_prefix=10.2.0.0/26
 #SERVER SUBNET
-hub_subnet_srv_name=sn-srv
+hub_subnet_srv_name=sn_srv
 hub_subnet_srv_prefix=10.2.0.64/26
 
 #Network Security Group Name
@@ -20,12 +20,12 @@ nsg_name=vms_nsg
 ####NPE
 npe_vnet_name=npe
 npe_vnet_prefix=10.2.11.0/24
-npe_subnet_name=sn-npe
+npe_subnet_name=sn_npe
 npe_subnet_prefix=10.2.11.0/26
 ###Client
 user_vnet_name=user
 user_vnet_prefix=10.2.12.0/24
-user_subnet_name=sn-user
+user_subnet_name=sn_user
 user_subnet_prefix=10.2.12.0/26
 ######## Deploying
 echo "Creating RG"
@@ -132,7 +132,7 @@ az vm create \
     --image Win2022AzureEditionCore \
     --public-ip-sku Standard \
     --vnet-name user \
-    --subnet sn-user \
+    --subnet sn_user \
     --admin-username azwinadmin \
 # note that you will be prompted to enter a pwd
 
@@ -157,12 +157,12 @@ nsg_name=vms_nsg
 ####NPE
 npe2_vnet_name=npe2
 npe2_vnet_prefix=10.3.11.0/24
-npe2_subnet_name=sn-npe2
+npe2_subnet_name=sn_npe2
 npe2_subnet_prefix=10.3.11.0/26
 ###Client
 user2_vnet_name=user2
 user2_vnet_prefix=10.3.12.0/24
-user2_subnet_name=sn-user2
+user2_subnet_name=sn_user2
 user2_subnet_prefix=10.3.12.0/26
 ######## Deploying
 echo "Creating RG"
