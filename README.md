@@ -17,7 +17,8 @@ cc token       = bml(...)odjc2YjBmO
 AZ CLI LAB builds resources in 2 region:
 
 WESTUS
-![sdwc westus](https://user-images.githubusercontent.com/76786046/225563568-f7e89537-aaa9-4ef0-8b4e-13cddeef0a64.png)
+![Screenshot 2023-03-16 at 10 18 51](https://user-images.githubusercontent.com/76786046/225572100-2e42582d-5f5d-45ba-8041-2526483cd533.png)
+
 
 WESTEU
 ![sdwc westeu](https://user-images.githubusercontent.com/76786046/225564392-5bc22166-703d-4ebb-bcdb-b17881fda76d.png)
