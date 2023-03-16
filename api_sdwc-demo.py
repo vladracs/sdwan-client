@@ -5,11 +5,21 @@
 #Sample API script that leverage the Vmware SDWAN Client Portal API to build a demo setup
 
 #It builds groups (users, server, connector), nodes (users, server, connectors), and network (with rules and context)
+# Disclaimer: Not to be considered as best practices in using VMware VCO API Meant to be used in Lab environments 
+# Please test it and use at your own risk
+# Please note that VMWare API and Support team - do not guarantee this samples It is provided - AS IS - i.e. while we are glad to answer questions about API usage and behavior generally speaking, VMware cannot and do not specifically support these scripts
+
+#Sample API script that leverage the Vmware SDWAN Client Portal API to build a demo setup
+
+#It builds groups (users, server, connector), nodes (users, server, connectors), and network (with rules and context)
+
+# author: vfrancadesou@vmware.com
 
 import json
 import requests
 
-myapitoken = "%s" %(os.environ['SDWC_API_TOKEN'])
+myapitoken = "YXBpXzYzZDI2NDFmNjFiZmU1MTM2MmNhNTllYy1iZTg4Njk0My03OGQ0LTRhNGEtODNjZC1jZjFjYjljMTdmZjlANjNkMjY0MWY2MWJmZTUxMzYyY2E1OWVjLmFuYW5kYS5uZXR8MnRpMG02YWdmaTYxZjhtZ2UwMWk"
+myemail = "vfrancadesou@vmware.com"
 useremail = "vfrancadesou+user1@vmware.com"
 mydomain = "myacme.com"
 
@@ -134,7 +144,7 @@ if(True):
     for users in myusers:
         if( users['email']==myemail):
                 myuser_id = users['userId']
-                #print(users['email']," ", myuser_id)
+                print(users['email']," ", myuser_id)
     user_url = f"{base_url}/register-accounts/v1.1/idps/api/orgs/{orgId}/invs/roles/standard/emails/{useremail}"
     user_data = {"email":useremail,"firstName":useremail,"groupIds":[user_group_id],
     "inviteId":"string","invitedBy":myuser_id,"lastName":"null","regType":"register","roleType":"STANDARD","type":"USER"}
@@ -234,7 +244,7 @@ if (addgw):
     print("cc token=",gw_token)
     for gw in gws:
         if gw['name']=="new-cc":
-            gw1_id=gw["userId"]
+            gw1_group_id=gw["userId"]
 
 
 # ananda API fails if you try to repost an existing object. so must always check for existence
@@ -248,7 +258,7 @@ for rule in rules:
         addrule=False
 if (addrule):
     rule_url = f"{base_url}/manage-accounts/v1.1/api/orgs/{orgId}/rules"
-    rule_data = {"name":"new-rule","description":"The description of my new rule","status":"active","allowType":"ALLOW","new":True,"predefinedNetworkServices":["HTTP"]}
+    rule_data = {"name":"new-rule","description":"The description of my new rule","status":"active","allowType":"ALLOW","new":True,"predefinedNetworkServices":["HTTP","ICMP"]}
     rule = s.post(rule_url, json=rule_data)
     rule1_id = json.loads(rule.content)["ruleId"]
 
@@ -306,6 +316,50 @@ if (addcontx):
     
     context1_id = json.loads(context.content)["contextId"]
 
+addcontx=True
+for contx in contxs:
+    
+    if contx['name']=="new-contx-windows":
+        context2_id = contx["contextId"]
+        addcontx=False
+if (addcontx):
+    
+    context_url = f"{base_url}/manage-accounts/v1.1/api/orgs/{orgId}/contexts"
+    context_data = {
+        "name": "new-contx-windows",
+        "description": "The description of my new context",
+        "times": [
+            {
+                "start": {
+                    "dateTime": None,
+                    "tz": "Europe/Berlin"
+                },
+                "end": {
+                    "dateTime": None,
+                    "tz": "Europe/Berlin"
+                },
+                "recurrence": {
+                    "cycle": {
+                        "type": "WEEKDAYS",
+                        "weekDays": [],
+                        "period": 1
+                    }
+                }
+            }
+        ],
+        "status": "active",
+        "allowType": "ALLOW",
+        "new": True,
+        "osTypes": [
+            "WIN"
+        ],
+        "locations": [],
+        "hasAntivirus": False,
+        "hasScreenSaver": False
+    }
+    context = s.post(context_url, json=context_data)
+    context2_id = json.loads(context.content)["contextId"]
+
 # ananda API fails if you try to repost an existing object. so must always check for existence
 get_net_url = f"{base_url}/manage-accounts/v1.1/api/orgs/{orgId}/v2lans"
 nets = s.get(get_net_url, json="")
@@ -313,27 +367,27 @@ nets = json.loads(nets.content)
 
 addnet=True
 for net in nets:
-    if net['name']=="HUB":
-        print("found net")
+    if net['name']=="new-HUB":
+        #print("found net")
         addnet=False
 if (addnet):
     network_url = f"{base_url}/manage-accounts/v1.1/api/orgs/{orgId}/v2lans"
-    network_hub_data = {"name":"HUB","topology":{"type":"HUB",
+    network_hub_data = {"name":"new-HUB","topology":{"type":"HUB",
                                                    "sourceNobs":[{"id":user_group_id,"type":"group"}],
-                                                   "targetNobs":[{"id":server1_group_id,"type":"group"},{"id":cc1_group_id,"type":"group"}]},
+                                                   "targetNobs":[{"id":server1_group_id,"type":"group"},{"id":server2_group_id,"type":"group"}]},
                                                    "new":True,
                                                    "isKeepConnected":False,
                                                    "policy":{"ruleIds":[rule1_id],
-                                                   "sourceContextId":context1_id}}
+                                                   "sourceContextId":context2_id}}
     network = s.post(network_url, json=network_hub_data)
 
 addnet=True
 for net in nets:
-    if net['name']=="MESH":
+    if net['name']=="new-MESH":
         addnet=False
 if (addnet):
     network_mesh_data ={
-        "name": "MESH",
+        "name": "new-MESH",
         "topology": {
             "type": "MESH",
             "sourceNobs": [
@@ -342,7 +396,7 @@ if (addnet):
                     "type": "group"
                 },
                 {
-                    "id": server2_group_id,
+                    "id": gw1_group_id,
                     "type": "group"
                 }
             ]
