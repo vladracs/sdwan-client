@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Welcome to Acme's Internal WebPage!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to SERVER1 UI!</h1>
+Server Public IP/name address is:<p id="demo"></p>
+<script>
+let hostname = location.hostname;
+document.getElementById("demo").innerHTML = hostname;
+</script>
+<p><span style="text-align:center; display: block;"><img src="http://www.wieistmeineip.de/ip-address/" border="0" width="125" height="125" alt="IP" /><br /></span></p>
+</body>
+</html>
