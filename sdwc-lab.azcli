@@ -215,6 +215,7 @@ runcmd:
   - chmod +x /script.deb.sh
   - bash /script.deb.sh
   - apt-get install -y sdwan-client-service
+  - wget -o /tmp/wget.txt -O /var/www/html/index.html "https://raw.githubusercontent.com/vladracs/sdwan-client/main/index.html"
 
 EOF
 
