@@ -79,10 +79,11 @@ runcmd:
   - bash /script.deb.sh
   - dpkg --configure -a
   - apt-get install -y ubuntu-desktop
-  - apt-get install -y sdwan-client-service
-  - apt-get install -y sdwan-client
   - apt-get install -y xrdp
   - usermod -a -G ssl-cert xrdp
+  - apt-get install -y sdwan-client-service
+  - apt-get install -y sdwan-client
+
   - apt-get install -y firefox
   - wget -o /tmp/wget.txt -O /var/www/html/index.html "https://raw.githubusercontent.com/vladracs/sdwan-client/main/index.html"
 EOF
@@ -96,7 +97,9 @@ runcmd:
   - wget -o /tmp/wget.txt "https://packagecloud.io/install/repositories/Ananda/release/script.deb.sh"
   - chmod +x /script.deb.sh
   - bash /script.deb.sh
+  - dpkg --configure -a
   - apt-get install -y sdwan-client-service
+  - apt-get install -y sdwan-client
   - wget -o /tmp/wget.txt -O /var/www/html/index.html "https://raw.githubusercontent.com/vladracs/sdwan-client/main/index.html"
 
 EOF
