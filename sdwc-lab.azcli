@@ -110,7 +110,7 @@ az vm create \
   --name sdwc_cc \
   --image UbuntuLTS \
   --admin-username azlinuxadmin \
-  --admin-password azlinuxVMware1! \
+  --admin-password use_your_password \
   --nics cc_nic \
   --custom-data cloud-init.txt \
   --no-wait
@@ -122,7 +122,7 @@ az vm create \
   --image UbuntuLTS \
   --nics srv_nic \
   --admin-username azlinuxadmin \
-  --admin-password azlinuxVMware1! \
+  --admin-password use_your_password \
   --custom-data cloud-init.txt \
   --no-wait
 echo "Creating SDWC NPE Linux VM"
@@ -131,7 +131,7 @@ az vm create \
   --name sdwc_npe \
   --image UbuntuLTS \
   --admin-username azlinuxadmin \
-  --admin-password azlinuxVMware1! \
+  --admin-password use_your_password \
   --nics npe_nic \
   --custom-data cloud-init.txt \
   --no-wait
@@ -145,7 +145,7 @@ az vm create \
     --image MicrosoftWindowsDesktop:Windows-10:21h1-ent:latest \
     --nics win_nic \
     --admin-username azwinadmin \
-    --admin-password "azwinVMware1!" \
+    --admin-password "use_your_password" \
     --accept-term
 
 echo "Creating SDWC User Linux VM"
@@ -154,7 +154,7 @@ az vm create \
   --name sdwc_ubu \
   --image UbuntuLTS \
   --admin-username azlinuxadmin \
-  --admin-password azlinuxVMware1! \
+  --admin-password use_your_password \
   --nics ubu_nic \
   --custom-data desk-cloud-init.txt \
   --no-wait
@@ -225,7 +225,7 @@ az vm create \
   --name sdwc_npe2 \
   --image UbuntuLTS \
   --admin-username azlinuxadmin \
-  --admin-password azlinuxVMware1! \
+  --admin-password use_your_password \
   --nics "npe2_nic" \
   --custom-data cloud-init.txt \
   --no-wait
