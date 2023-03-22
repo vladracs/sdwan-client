@@ -391,7 +391,7 @@ if (addcontx):
 get_net_url = f"{base_url}/manage-accounts/v1.1/api/orgs/{orgId}/v2lans"
 nets = s.get(get_net_url, json="")
 nets = json.loads(nets.content)
-
+network_url = f"{base_url}/manage-accounts/v1.1/api/orgs/{orgId}/v2lans"
 addnet=True
 for net in nets:
     if net['name']=="segment1-HS":
@@ -439,31 +439,14 @@ if (addnet):
 addnet=True
 for net in nets:
     if net['name']=="segment3-HS":
+        print("network found")
         addnet=False
 if (addnet):
-    network_mesh_data ={
-        "name": "segment2-HS",
-        "topology": {
-            "type": "HUB",
-            "sourceNobs": [
-                {
-                    "id": user_group_id,
-                    "type": "group"
-                },
-                {
-                    "id": server2_group_id,
-                    "type": "group"
-                }
-            ]
-        },
-        "new": True,
-        "isKeepConnected": False,
-        "policy": {
-            "ruleIds": [
-                rule1_id
-            ],
-            "sourceContextId": context1_id
-        }
-    }
+    network_hub_data ={"name":"segment3-HS","topology":{"type":"HUB",
+                                                "sourceNobs":[{"id":user_group_id,"type":"group"}],
+                                                "targetNobs":[{"id":server2_id,"type":"server"}]},
+                                                "new":True,"isKeepConnected":False,
+                                                "policy":{"ruleIds":[rule2_id],
+                                                          "sourceContextId":context1_id}}
 
-    network = s.post(network_url, json=network_mesh_data)
+    network = s.post(network_url, json=network_hub_data)
