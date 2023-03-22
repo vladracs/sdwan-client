@@ -8,20 +8,16 @@ vfrancadesou% python3 api_sdwc.py
 
 ORG ID=63d2641f61bfe
 
-server 1 token = bm(...)MWJmZ2MTVub
-
-server 2 token = bml(...)WQ1bmF2YTV
-
-cc token       = bml(...)odjc2YjBmO
-
-AZ CLI LAB builds resources in 2 region:
+(...)
 
 WESTUS
-![Screenshot 2023-03-16 at 10 18 51](https://user-images.githubusercontent.com/76786046/225572100-2e42582d-5f5d-45ba-8041-2526483cd533.png)
+![Screenshot 2023-03-22 at 12 13 34](https://user-images.githubusercontent.com/76786046/226892930-74d273cd-0057-49d3-815c-284fe87b5d76.png)
+
 
 
 WESTEU
-![westeu](https://user-images.githubusercontent.com/76786046/225592294-579bcf5b-974c-417f-9051-383ac97332d0.png)
+![Screenshot 2023-03-22 at 12 12 16](https://user-images.githubusercontent.com/76786046/226892967-829c4d85-07de-4f97-b2d5-96b9dd21e4c5.png)
+
 
 
 All linux instance have sdwc installed and a nginx webserver.
